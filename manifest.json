@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+
+    "name": "Dotabuff Helper",
+    "description": "Helper extension for Dotabuff.",
+    "version": "0.1",
+
+    "content_scripts": [
+        {
+            "matches": ["http://*.dotabuff.com/players/*"],
+            "exclude_matches": ["http://*.dotabuff.com/players/*/*"],
+            "js": ["dsr.js"]
+        }
+    ],
+
+    "permissions": [
+        "http://*.dotabuff.com/*",
+        "http://*.mydotaskill.com/*"
+    ]
+}
