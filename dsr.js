@@ -33,9 +33,9 @@ xhr.onreadystatechange = function() {
 		table.appendChild(thead);
 		var tr = document.createElement('tr');
 		thead.appendChild(tr);
-		var levelHeader = document.createElement('th');
-		levelHeader.textContent = 'Level';
-		tr.appendChild(levelHeader);
+		var tierHeader = document.createElement('th');
+		tierHeader.textContent = 'Tier';
+		tr.appendChild(tierHeader);
 		var ratingHeader = document.createElement('th');
 		ratingHeader.textContent = 'Rating';
 		tr.appendChild(ratingHeader);
@@ -48,12 +48,12 @@ xhr.onreadystatechange = function() {
 		var dummy = document.createElement('div');
 		dummy.innerHTML = xhr.responseText;
 		try {
-			var level = dummy.getElementsByTagName('h4')[1].nextSibling.nextSibling.nextSibling.textContent;
+			var tier = dummy.getElementsByTagName('h4')[1].nextSibling.nextSibling.nextSibling.textContent;
 			var rating = dummy.getElementsByTagName('h4')[1].getElementsByTagName('a')[0].textContent;
 		
-			var levelCell = document.createElement('td');
-			levelCell.textContent = level;
-			row.appendChild(levelCell);
+			var tierCell = document.createElement('td');
+			tierCell.textContent = tier;
+			row.appendChild(tierCell);
 			var ratingCell = document.createElement('td');
 			ratingCell.textContent = rating;
 			row.appendChild(ratingCell);
