@@ -47,21 +47,24 @@ xhr.onreadystatechange = function() {
 
 		var dummy = document.createElement('div');
 		dummy.innerHTML = xhr.responseText;
-		try {
-			var tier = dummy.getElementsByTagName('h4')[1].nextSibling.nextSibling.nextSibling.textContent;
-			var rating = dummy.getElementsByTagName('h4')[1].getElementsByTagName('a')[0].textContent;
-		
+
+		var rating = dummy.getElementsByTagName('h4')[0].getElementsByTagName('h1')[0].textContent;
+		if (!isNaN(rating)) {
+			var elem = dummy.getElementsByTagName('h4')[0].nextSibling.nextSibling;
+			while (!(elem.tagName && elem.tagName.toLowerCase() == 'font' && elem.hasAttribute('color'))) {
+				elem = elem.nextSibling;
+			}
+			var tier = elem.textContent;
 			var tierCell = document.createElement('td');
 			tierCell.textContent = tier;
 			row.appendChild(tierCell);
 			var ratingCell = document.createElement('td');
 			ratingCell.textContent = rating;
 			row.appendChild(ratingCell);
-		} catch (e) {
+		} else {
 			// rating not ready yet (queueing)
-			var position = dummy.getElementsByTagName('h4')[1].textContent.match(/\d+/g)[1];
 			var queueCell = document.createElement('td');
-			queueCell.textContent = 'Queueing, position: ' + position;
+			queueCell.textContent = 'Queueing...';
 			queueCell.colSpan = 2;
 			queueCell.className = 'cell-centered cell-explanation';
 			row.appendChild(queueCell);
